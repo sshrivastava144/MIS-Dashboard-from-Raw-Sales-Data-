@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        h1, h2 { margin-top: 40px; }
+        .section { display: flex; margin-bottom: 50px; align-items: flex-start; }
+        .chart-box { flex: 1; padding-right: 30px; }
+        .table-box { flex: 1; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+
+<h1>📊 Sales Data Dashboard</h1>
+
+<!-- Section 1: Monthly Sales -->
+<h2>📅 Month-on-Month Sales</h2>
+<div class="section">
+    <div class="chart-box">
+        <img src="data:image/png;base64,{{ chart_monthly }}" alt="Monthly Sales">
+    </div>
+    <div class="table-box">
+        <table>
+            <tr><th>Month-Year</th><th>Total Sales</th></tr>
+            {% for month, value in monthly_sales.items() %}
+            <tr><td>{{ month }}</td><td>{{ "{:,.2f}".format(value) }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<!-- Section 2: Top Products -->
+<h2>🏆 Top 5 Products</h2>
+<div class="section">
+    <div class="chart-box">
+        <img src="data:image/png;base64,{{ chart_products }}" alt="Top Products">
+    </div>
+    <div class="table-box">
+        <table>
+            <tr><th>Product</th><th>Total Sales</th></tr>
+            {% for product, value in top_products.items() %}
+            <tr><td>{{ product }}</td><td>{{ "{:,.2f}".format(value) }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<!-- Section 3: Region Sales -->
+<h2>🌍 Region-wise Sales</h2>
+<div class="section">
+    <div class="chart-box">
+        <img src="data:image/png;base64,{{ chart_regions }}" alt="Region Sales">
+    </div>
+    <div class="table-box">
+        <table>
+            <tr><th>Region</th><th>Total Sales</th></tr>
+            {% for region, value in region_sales.items() %}
+            <tr><td>{{ region }}</td><td>{{ "{:,.2f}".format(value) }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<!-- Section 4: Salesperson Sales -->
+<h2>🧑‍💼 Salesperson-wise Sales</h2>
+<div class="section">
+    <div class="chart-box">
+        <img src="data:image/png;base64,{{ chart_salespersons }}" alt="Salesperson Sales">
+    </div>
+    <div class="table-box">
+        <table>
+            <tr><th>Salesperson</th><th>Total Sales</th></tr>
+            {% for person, value in salesperson_sales.items() %}
+            <tr><td>{{ person }}</td><td>{{ "{:,.2f}".format(value) }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
